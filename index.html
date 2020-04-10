@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Face Detection</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+
+    #cam-wrp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      position: absolute;
+    }
+
+    #cam {
+      overflow: hidden;
+      border-radius: 30px;
+      border: 5px solid;
+    }
+
+    #details {
+      border: 4px solid black;
+      font-size: 20px;
+      position: absolute;
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 15px;
+      top: 20px;
+      left: 30px;
+      width: 270px;
+    }
+
+    #details>div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      border-bottom: 1px solid #c8c8c8;
+    }
+
+    #details>div>div>small {
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+
+    #exp-emo {
+      font-size: 100px;
+      justify-content: center !important;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 22px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.slider {
+      background-color: black;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px black;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+  </style>
+
+  <script defer src="face-api.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <div id="details">
+    <div>
+      Show face boundary
+      <label class="switch">
+        <input id="bound" type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div>
+      Show face landmark
+      <label class="switch">
+        <input id="landmark" type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div>
+      <div>
+        <small>Face Detection</small>
+        <div id="face">Detecting face...</div>
+      </div>
+      <div>
+        <small>Probability</small>
+        <div id="face-p">-</div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <small>Gender</small>
+        <div id="gen">-</div>
+      </div>
+      <div>
+        <small>Probability</small>
+        <div id="gen-p">-</div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <small>Age</small>
+        <div id="age">-</div>
+      </div>
+      <div>
+        <small>Probability</small>
+        <div id="gen-p">-</div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <small>Expression</small>
+        <div id="exp">-</div>
+      </div>
+      <div>
+        <small>Probability</small>
+        <div id="exp-p">-</div>
+      </div>
+    </div>
+    <div id="exp-emo"></div>
+
+  </div>
+  <div id="cam-wrp">
+    <video id="cam" width="750" height="562" autoplay muted></video>
+  </div>
+</body>
+
+</html>
