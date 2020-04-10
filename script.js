@@ -14,7 +14,10 @@ Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
   faceapi.nets.faceExpressionNet.loadFromUri('./models'),
   faceapi.nets.ageGenderNet.loadFromUri('./models')
-]).then(startCamera)
+]).then(res => {
+  document.getElementById('loader').style.display = 'none'
+  startCamera()
+})
 
 
 cam.addEventListener('play', () => {

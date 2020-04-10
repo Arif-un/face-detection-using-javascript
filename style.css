@@ -119,3 +119,7 @@ input:checked + .slider:before {
   position: fixed;
   top: 10px;
 }
+#loader {
+  position: absolute;
+  top: 20%;
+}

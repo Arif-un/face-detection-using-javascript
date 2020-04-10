@@ -77,6 +77,8 @@
 
   <div id="alert">📷<small> Allow Web Cam to run this app</small></div>
 
+  <h2 id="loader">Loading...</h2>
+
   <div id="cam-wrp">
     <video id="cam" width="750" height="562" autoplay muted></video>
   </div>
